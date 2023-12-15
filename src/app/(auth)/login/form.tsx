@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import UserService from '@/apis/user'
 
 const LoginForm = () => {
   const schema = z.object({
@@ -23,25 +24,42 @@ const LoginForm = () => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'admin@gmail.com',
+      password: '123456',
     },
   })
 
-  const onSubmit = (value: z.infer<typeof schema>) => {
-    console.log(value)
+  const onSubmit = async (value: z.infer<typeof schema>) => {
+    try {
+      const data = await UserService.login(value)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
-    <div className="w-96 bg-white p-5 shadow rounded-lg">
+    <div className="flex items-center justify-center mt-10">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-2 w-96 p-5 bg-white shadow rounded-md"
+        >
+          <div className="space-y-5">
+            <h2 className="text-xl font-semibold text-center">Login</h2>
+            <p className="text-xs text-center">
+              Already have an account?{' '}
+              <span className="font-semibold text-main-blue1">
+                Login in here
+              </span>
+            </p>
+          </div>
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block text-gray-400 text-sm font-medium">
+                <FormLabel className="block text-gray-400 text-xs font-medium">
                   Email
                 </FormLabel>
                 <FormControl>
@@ -61,13 +79,14 @@ const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block text-gray-400 text-sm font-medium">
+                <FormLabel className="block text-gray-400 text-xs font-medium">
                   Password
                 </FormLabel>
                 <FormControl>
                   <Input
                     className="px-3 py-2"
-                    placeholder="enter your email"
+                    placeholder="enter your password"
+                    type="password"
                     {...field}
                   />
                 </FormControl>
@@ -75,7 +94,11 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Login</Button>
+          <div>
+            <Button type="submit" className="w-full mt-10">
+              Login
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
