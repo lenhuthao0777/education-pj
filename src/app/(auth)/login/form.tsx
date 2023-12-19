@@ -49,9 +49,7 @@ const LoginForm = () => {
             <h2 className="text-xl font-semibold text-center">Login</h2>
             <p className="text-xs text-center">
               Already have an account?{' '}
-              <span className="font-semibold text-main-blue1">
-                Login in here
-              </span>
+              <span className="font-semibold">Login in here</span>
             </p>
           </div>
           <FormField
@@ -65,6 +63,7 @@ const LoginForm = () => {
                 <FormControl>
                   <Input
                     className="px-3 py-2"
+                    type="email"
                     placeholder="enter your email"
                     {...field}
                   />

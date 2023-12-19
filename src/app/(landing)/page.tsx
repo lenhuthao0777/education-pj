@@ -1,9 +1,11 @@
-import { Button } from '@/components/ui/button'
+import Heading from './heading'
+import Heroes from './heroes'
 
 export default function Home() {
   return (
-    <div>
-      <Button size="icon">test</Button>
+    <div className="container mx-auto flex flex-col items-center">
+      <Heading />
+      <Heroes />
     </div>
   )
 }
