@@ -1,8 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+
+import { useLayoutEffect, useState } from 'react'
 import { User } from 'lucide-react'
-import Cookies from 'js-cookie'
+import Link from 'next/link'
+
+import { Avatar, AvatarFallback } from '../ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,32 +18,27 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { getDataCookie } from '@/lib/utils'
-import { Button } from '../ui/button'
-import { Avatar, AvatarFallback } from '../ui/avatar'
+} from '../ui/dropdown-menu'
+import { cn, getDataCookie, removeCookie } from '@/lib/utils'
+import { buttonVariants } from '../ui/button'
 
-export function UserAvatar() {
-  const router = useRouter()
+const UserAvatar = () => {
   const [mounted, setMounted] = useState(false)
   const userInfo = getDataCookie('userInfo')
 
-  const handleLogout = () => {
-    Cookies.remove('userInfo')
-    router.push('/log-in')
-  }
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    return null
+  if (!mounted) return null
+
+  const handleLogout = () => {
+    removeCookie('userInfo')
   }
 
   return (
     <div className="hidden md:flex items-center space-x-2">
-      {userInfo?.email ? (
+      {userInfo ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="cursor-pointer">
@@ -98,16 +95,14 @@ export function UserAvatar() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => router.push('/login')}
+        <Link
+          href="/login"
+          className={cn(buttonVariants({ variant: 'secondary' }))}
         >
           Login
-        </Button>
+        </Link>
       )}
     </div>
   )
 }
-
 export default UserAvatar

@@ -14,6 +14,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import UserService from '@/apis/user'
+import { setCookie } from '@/lib/utils'
 
 const LoginForm = () => {
   const schema = z.object({
@@ -32,7 +33,7 @@ const LoginForm = () => {
   const onSubmit = async (value: z.infer<typeof schema>) => {
     try {
       const data = await UserService.login(value)
-      console.log(data)
+      setCookie('userInfo', data)
     } catch (error) {
       console.log(error)
     }
