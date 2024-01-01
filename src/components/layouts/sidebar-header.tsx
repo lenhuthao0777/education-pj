@@ -2,8 +2,6 @@
 
 import { ChevronsUpDown, User } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
-
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import {
   DropdownMenu,
@@ -17,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { getDataCookie } from '@/lib/utils'
 
-const HeadSidebar = () => {
+const SidebarHeader = () => {
   const router = useRouter()
 
   const userInfo = getDataCookie('userInfo')
@@ -34,10 +32,10 @@ const HeadSidebar = () => {
             </Avatar>
           </div>
           <div className="flex items-center ml-2 w-full text-muted-foreground">
-            <span className="line-clamp-1 overflow-hidden text-xs font-semibold">
-              {userInfo?.email}
+            <span className="line-clamp-1 overflow-hidden text-xs font-semibold text-white">
+              test@gmail.com
             </span>
-            <ChevronsUpDown className="w-4 h-4 ml-2" />
+            <ChevronsUpDown className="w-4 h-4 ml-2 text-white" />
           </div>
         </div>
       </DropdownMenuTrigger>
@@ -72,4 +70,4 @@ const HeadSidebar = () => {
   )
 }
 
-export default HeadSidebar
+export default SidebarHeader

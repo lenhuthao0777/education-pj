@@ -18,17 +18,8 @@ const Header = () => {
   }
 
   return (
-    <nav className="w-full h-10 bg-background border-b border-zinc-200 px-1 flex items-center">
-      <div className="flex items-center w-full space-x-2">
-        <ChevronLeft
-          onClick={() => router.back()}
-          className="w-6 h-6 text-muted-foreground hover:text-zinc-700 rounded-sm hover:bg-neutral-200 cursor-pointer"
-        />
-
-        {/* <p className="text-xs text-zinc-700 select-none">
-          {Breadcrumbs[pathName as keyof typeof Breadcrumbs]}
-        </p> */}
-      </div>
+    <nav className="w-full bg-background border-b border-zinc-200 px-1 flex items-center">
+      <div className="flex items-center w-full space-x-2"></div>
       <div
         className="w-8 h-8 rounded-sm transition flex items-center justify-center hover:bg-neutral-200 cursor-pointer"
         onClick={showListNotify}

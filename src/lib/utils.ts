@@ -86,6 +86,13 @@ export const danger = (...args: any) => {
   }
 }
 
+export const setCookie = (key: string, values: any) => {
+  if (typeof window !== 'undefined' && key) {
+    Cookies.set(key, JSON.stringify(values))
+  }
+  return null
+}
+
 export const getDataCookie = (key: string) => {
   if (typeof window !== 'undefined' && key) {
     let result: any = {}
@@ -123,3 +130,5 @@ export const removeEmpty = (params: any) => {
   }
   return params
 }
+
+export const test = ''

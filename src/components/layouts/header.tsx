@@ -4,6 +4,7 @@ import UserAvatar from './UserAvatar'
 
 const Header = () => {
   const menus = ['Home', 'About Us', 'Blog']
+
   return (
     <header className="h-16 w-full flex items-center sticky top-0 z-10 bg-background border-b border-gray-200">
       <nav className="container w-ful flex items-center justify-center md:justify-between">
