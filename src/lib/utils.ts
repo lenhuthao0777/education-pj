@@ -130,3 +130,5 @@ export const removeEmpty = (params: any) => {
   }
   return params
 }
+
+export const test = ''
